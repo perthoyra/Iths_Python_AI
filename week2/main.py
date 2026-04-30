@@ -1,5 +1,6 @@
 from os import system, name
 from time import sleep
+import pandas as pd
 import menu
 import json
 
@@ -8,6 +9,10 @@ def clear_screen() -> None:
         _ = system('cls')
     else:
         _ = system('clear')
+        
+def read_menu_data():
+    df = pd.read_json("week2\data\menu_data.json")
+    return dict(df["options"])
                
 def handle_response(choice: int, menu_items: dict) -> bool:
     match choice:
@@ -31,19 +36,15 @@ def run(mymenu: menu) -> None:
         mymenu.draw_menu()
         selected = mymenu.get_input()
         
-        if not handle_response(selected, mymenu.get_menu_items):
+        if not handle_response(selected, mymenu.get_menu_items()):
             break
         
 def main():
-    thisdict = {
-        1: "Select option 1.",
-        2: "Select option 2.",
-        0: "Exit"
-    }
+    thisdict = read_menu_data()
 
-    myMenu = menu.MyMenu(thisdict)
-       
-    run(myMenu)
+    if thisdict:
+        myMenu = menu.MyMenu(thisdict)
+        run(myMenu)
         
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
