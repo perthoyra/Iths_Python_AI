@@ -1,7 +1,7 @@
 
 from pathlib import Path
 
-import data.Text_Handler as Txt
+from data.Text_Handler import Text_Handler
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
@@ -12,7 +12,7 @@ def main():
     print(BASE_DIR)
     print(DATA_DIR)
 
-    txt_handler = Txt(DATA_DIR)
+    txt_handler = Text_Handler(DATA_DIR)
         
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':

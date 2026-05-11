@@ -8,6 +8,7 @@ class Text_Handler:
 
     def __init__(self, directory: str) -> None:
         self._directory = directory
+        print(f"Text_Handler directory: {self._directory}")
 
     def read_from_file(self, filename: str, read_all:bool = True):
         # Example of manual  way of reading file, do not forget to close the file when done.
